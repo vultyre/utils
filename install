@@ -10,10 +10,10 @@ $VTAIL --checklist --separate-output "Choose what to install" 10 60 2 \
 while read choice; do
 	case "$choice" in
 		"Toggle tiling mode")
-			bash .installscripts/toggle_tiling_mode
+			bash .installscripts/toggle_tiling_mode.inst
 			;;
 		"AwOken icons")
-			bash .installscripts/awoken_icons
+			bash .installscripts/awoken_icons.inst
 			;;
 		*)
 			echo "NOTTOGGLETILINGMODE"

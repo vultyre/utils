@@ -1,0 +1,7 @@
+#!/bin/bash
+# A script to install my toggle_tiling_mode
+
+PASSWD=$(whiptail --passwordbox "Password needed to install to /usr/local/bin/" 10 40 3>&1 1>&2 2>&3)
+
+echo $PASSWD | sudo -S cp ../usrbin/toggle_tiling_mode /usr/local/bin/toggle_tiling_mode
+#mkdir ~/.usrvar
