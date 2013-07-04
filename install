@@ -1,0 +1,27 @@
+#!/bin/bash
+#Set VTAIL to always include the backtitle for the title of the installer
+VTAIL=${VTAIL=whiptail --backtitle "Vultyre's_Installer_Tool_0.1"}
+
+$VTAIL --checklist --separate-output "Choose what to install" 10 60 2 \
+	"Toggle tiling mode" "  A tiling mode for xfwm4" off \
+	"AwOken icons" "  A popular icon set" off 2>.installscripts/installed
+
+# Read everything in and execute the correct installer script for that package
+while read choice; do
+	case "$choice" in
+		"Toggle tiling mode")
+			bash .installscripts/toggle_tiling_mode
+			;;
+		"AwOken icons")
+			bash .installscripts/awoken_icons
+			;;
+		*)
+			echo "NOTTOGGLETILINGMODE"
+			;;
+	esac
+done < .installscripts/installed
+
+#If no input given (Ok hit without continuing or cancel hit"
+if ! [ -s .installscripts/installed ] ; then
+	$VTAIL --msgbox "Installation canceled" 7 30
+fi

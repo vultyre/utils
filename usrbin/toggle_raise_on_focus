@@ -1,0 +1,18 @@
+#!/bin/bash
+# A short bash script that will toggle raise on focus for xfwm4
+
+xfconf-query -c xfwm4 -p /general/raise_on_focus -T
+
+rft=$(cat ~/.usrvar/raise_focus_toggle)
+
+if [ $rft -eq 0 ]
+then
+	echo "1" > ~/.usrvar/raise_focus_toggle
+	notify-send -t 3000 "Tiling mode enabled."
+fi
+
+if [ $rft -eq 1 ]
+then
+	echo "0" > ~/.usrvar/raise_focus_toggle
+	notify-send -t 3000 "Tiling mode disabled."
+fi
